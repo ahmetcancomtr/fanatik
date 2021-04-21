@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  fanatik:
+    #image: fanatik
+    image: ahmetcancomtr1/fanatik
+    environment:
+      - AUTH_SECRETKEY=GIZLIANAHTARDEGISTIRILMELI
+      - MONGO_CONNECTION=mongodb://root:1@mongodb
+      - MONGO_DATABASE=fanatik
+      - AUTH_TOKEN_EXP_HOURS=1
+      - ASPNETCORE_ENVIRONMENT=Development
+    restart: always
+    ports:
+      - 80:5000
+    volumes:
+      - ./volume/database:/data/db
+      - ./volume/backup:/backup
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+volumes:    
+      db:
+networks:
+  default:
+      name: fanatik_network
+    

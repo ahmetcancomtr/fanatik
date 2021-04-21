@@ -1,0 +1,120 @@
+#@baseUrl = http://136.244.100.180:80
+@baseUrl = http://localhost:5000
+
+# @name login
+POST {{baseUrl}}/Authentication/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "userid": "ahmetcan",
+    "password": "1"
+}
+
+###
+
+@authToken = {{login.response.body.$.token}}
+
+# @name createComment
+POST {{baseUrl}}/test/echo HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "content": "authorization is successfull"
+}
+
+###
+
+
+
+# @name createComment
+POST {{baseUrl}}/users/adduser HTTP/1.1
+Content-Type: application/json
+
+{
+    "UserName":"ahmetcan",
+    "Password":"1"
+       
+}
+
+###
+
+
+@authToken = {{login.response.body.$.token}}
+
+
+# @name createComment
+POST {{baseUrl}}/news/create-article HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+   "Title":"Title T1",
+   "Content":"Content T1",
+   "Tags":["Tag1","Tag2"]
+}
+
+###
+
+@authToken = {{login.response.body.$.token}}
+
+
+# @name createComment
+GET {{baseUrl}}/news/remove-article/07ee6577-af1f-43ed-a6ba-06e470624f53 HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+
+
+@authToken = {{login.response.body.$.token}}
+
+
+# @name createComment
+GET {{baseUrl}}/news/list-article HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+
+@authToken = {{login.response.body.$.token}}
+
+
+# @name createComment
+POST {{baseUrl}}/news/publish HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "Name":"publis name T1", --urls http://0.0.0.0:5000
+    "Description":"publish desc t1",
+    "ArticleList":["e0921a04-805c-425f-ada9-dac30a5b471a","a1ac5b1e-2f5f-4772-9e9b-b65f9e2ae166"],
+    "Tags":["t1","t2","t6"]
+}
+
+###
+
+@authToken = {{login.response.body.$.token}}
+
+
+# @name createComment
+GET {{baseUrl}}/news/unpublish/113bc5e4-b0cf-4974-98cc-5fee94757c72 HTTP/1.1
+Authorization: Bearer {{authToken}}
+###
+
+@authToken = {{login.response.body.$.token}}
+
+# @name createComment
+GET {{baseUrl}}/news/list-all-publish HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+
+@authToken = {{login.response.body.$.token}}
+
+# @name createComment
+GET {{baseUrl}}/news/show-publish/113bc5e4-b0cf-4974-98cc-5fee94757c72 HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+
+
+
