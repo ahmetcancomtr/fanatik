@@ -91,8 +91,20 @@ namespace fanatik.repositories
             var db=GetDatabase();
 
             var publisList=await GetPublishListById(publishlistid);
-            var filter = Builders<Article>.Filter.In(x => x.Id,publisList.ArticleList);
-            return (await db.GetCollection<Article>(ARTICLE).FindAsync(filter)).ToList();
+            
+            var resultList=new List<Article>();
+            if(publisList==null){
+                return resultList;
+            }
+            foreach(var articleId in publisList.ArticleList){
+                var article=await GetArticleById(articleId);
+                if(article!=null){
+                    resultList.Add(article);
+                }
+                
+            }
+            return resultList;
+            
         }
 
     }
