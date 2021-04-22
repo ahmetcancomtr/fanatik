@@ -86,7 +86,7 @@ namespace fanatik.repositories
             var usersColleciton=db.GetCollection<PublishList>(PUBLISHLIST);
             return (await usersColleciton.FindAsync(item=>item.Id==publishListId)).FirstOrDefault();
         }
-     }
+     
         public async Task<List<Article>> GetArticlesByPublishList(string publishlistid)
         {
             var db=GetDatabase();
