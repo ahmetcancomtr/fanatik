@@ -1,5 +1,5 @@
 
-News CMS API case study çalışması
+News CMS API case study
 
 canlı demo
 http://136.244.100.180
