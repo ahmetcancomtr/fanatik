@@ -20,6 +20,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=1
+      - MONGO_INITDB_DATABASE=fanatik
     restart: always
     ports:
       - 27017:27017

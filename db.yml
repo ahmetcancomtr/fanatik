@@ -4,6 +4,7 @@ services:
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_DATABASE=fanatik
       - MONGO_INITDB_ROOT_PASSWORD=1
     restart: always
     ports:
